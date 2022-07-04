@@ -14,19 +14,24 @@ ARGS = $(filter-out $@, $(MAKECMDGOALS))
 BIN_CMD = $(CXX) $(CXXFLAGS) -c $<
 EXE_CMD = $(CXX) $(LDFLAGS) -o $@ $^ 
 
+#------------------------------------------------------------------------------------
+
 # Binary files
 %.o: %.cpp
   @$(BIN_CMD)
 
+#------------------------------
 
 # Executive files
 main: $(OBJ)
   @$(EXE_CMD)
 
+#------------------------------
 
 # Headers
 main: $(HDR)
 
+#------------------------------
 
 # Utilities
 all: reset main
@@ -38,3 +43,8 @@ clean clear:
 
 reset: clean
   @rm -f $(DATA)
+
+git :
+  @git add .
+  @git commit -m $(ARGS)
+  @git push
